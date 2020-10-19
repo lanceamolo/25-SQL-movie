@@ -4,7 +4,8 @@ SELECT *
 
 -- Select only the title and id of the first 10 rows
 SELECT id, title 
-  FROM movies;
+  FROM movies
+    LIMIT 10;
 
 -- Find the movie with the id of 485
 SELECT title 
@@ -156,3 +157,4 @@ SELECT  movies.title, ratings.movie_id, AVG(ratings.rating)
     LEFT JOIN ratings ON movies.id = ratings.movie_id
       GROUP BY movies.id
         HAVING(ratings.rating) > 4            
+
