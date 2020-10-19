@@ -60,9 +60,11 @@ SELECT *
 SELECT * 
   FROM movies 
     WHERE title 
-      LIKE “%(2001)%” 
-        AND title 
-          LIKE “%super%”;
+      (LIKE “%(2001)%”
+        OR title
+          LIKE "%(2002)%")
+            AND title 
+              LIKE “%super%”;
 
 -- Find all the ratings for the movie Godfather, show just the title and the rating
 SELECT title, rating 
