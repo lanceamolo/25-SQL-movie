@@ -34,7 +34,7 @@ SELECT title
 SELECT title 
   FROM movies 
     WHERE title 
-      LIKE “Godfather%”;
+      LIKE “Godfather, The%”;
 
 -- Without using joins find all the comedies
 SELECT * 
