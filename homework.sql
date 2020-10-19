@@ -150,6 +150,7 @@ SELECT user_id,
 SELECT  movies.title, ratings.movie_id, AVG(ratings.rating)
   FROM movies
     LEFT JOIN ratings ON movies.id = ratings.movie_id
-      GROUP BY movies.id
-        HAVING(ratings.rating) > 4            
+      HAVING(ratings.rating) > 4
+        ORDER BY movies.id
+                    
 
