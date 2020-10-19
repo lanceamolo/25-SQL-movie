@@ -81,7 +81,7 @@ SELECT *
       ON movies.id = ratings.movie_id 
         WHERE movies.title 
           LIKE “%Godfather, The%” 
-            ORDER BY ratings.”timestamp”;
+            ORDER BY ratings.”timestamp” DESC;
 
 -- Find the comedies from 2005 and get the title and imdbid from the links table
 SELECT movies.title, links.imdb_id 
@@ -89,7 +89,7 @@ SELECT movies.title, links.imdb_id
     INNER JOIN links 
       ON movies.id = links.movie_id 
         WHERE movies.title 
-          LIKE “%2005%” 
+          LIKE “%(2005)%” 
             AND movies.genres 
               LIKE “%Comedy%”;
 
@@ -101,32 +101,25 @@ SELECT movies.title, ratings.rating
         WHERE ratings.rating = NULL;              
 
 -- Get the average rating for a movie
-SELECT movies.title, ratings.movie_id,
-  AVG(ratings.rating)
-    FROM movies
-      LEFT JOIN ratings 
-        ON movies.id = ratings.movie_id
-          WHERE movies.id = 9;
+SELECT AVG(rating)
+  FROM  ratings
+    WHERE movies.id = 9;
 
 -- Get the total ratings for a movie
-SELECT movies.title, ratings.movie_id,
-  COUNT(ratings.rating)
-    FROM movies
-      LEFT JOIN ratings 
-        ON movies.id = ratings.movie_id
-          WHERE movies.id = 5;
+SELECT SUM(rating)
+  FROM  ratings
+    WHERE movies.id = 9;
 
 -- Get the total movies for a genre
-SELECT title, genres
+SELECT COUNT (id)
   FROM movies
     WHERE genres 
       LIKE "%Comedy";      
 
 -- Get the average rating for a user
-SELECT user_id,
-  AVG(rating)
-    FROM ratings
-      WHERE user_id = 14;    
+SELECT AVG(rating)
+  FROM ratings
+    WHERE user_id = 14;    
 
 -- Find the user with the most ratings
 SELECT user_id,
